@@ -14,7 +14,7 @@ An interactive educational module for teaching stellar absorption lines and the 
 
 ## Credits
 
-- **Created by**: [Yuan-Sen Ting](https://www.asc.ohio-state.edu/ting.74/) (Harvard Astronomy)
+- **Created by**: [Yuan-Sen Ting](https://ysting.space) (Harvard Astronomy)
 - **Advised by**: Andrew Pontzen, Alyssa Goodman, Steven Cranmer, Bruce Peterson, Chris Faesi, Nathan Sanders
 - **Image credits**: Benjamin SiewMeng Chee
 - **Student text contributors**: Steven R. Cranmer, Bruce A. Peterson
