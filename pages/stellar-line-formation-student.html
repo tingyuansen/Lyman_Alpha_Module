@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Line Formation - Student Version</title>
+    <link rel="stylesheet" href="../CSS/Layout.css">
+    <link rel="stylesheet" href="../CSS/Fancybox.css">
+    <!-- MathJax CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+            TeX: { equationNumbers: {autoNumber: "AMS"} }
+        });
+    </script>
+</head>
+<body>
+    <div id="wrapper1">
+        <div id="logo"></div>
+        <div class="clr"></div>
+        <div class="content">
+
+            <h2 style="color: #FFB676;">Stellar Line Formation</h2>
+            <p style="font-size:15px;">
+                By Steven R. Cranmer (Harvard University). May, 2013.<br>
+                Edit by <a class="various3" href="https://www.asc.ohio-state.edu/ting.74">Yuan-Sen Ting</a> (Harvard University).
+            </p>
+
+            <br><br><br>
+            <hr>
+            <br><br>
+
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A simple, but instructive, way to think about the formation of <a class="various2" href="https://en.wikipedia.org/wiki/Spectral_line">spectral lines</a> is the <a class="various2" href="https://en.wikipedia.org/wiki/Arthur_Schuster">Schuster</a> (1905) reversing layer model (see also <a class="various2" href="https://en.wikipedia.org/wiki/Dimitri_Mihalas">Mihalas</a> 1978, 1999). The spectral line (i.e., a particular <a class="various2" href="https://en.wikipedia.org/wiki/Atomic_electron_transition">transition</a> from one bound <a class="various2" href="https://en.wikipedia.org/wiki/Energy_level">electron energy level</a> in an element to another energy level) is assumed to be formed in a "cloud" of gas sitting "above" the main source of radiation. That main part -- which has traditionally been thought of as a dense <a class="various2" href="https://en.wikipedia.org/wiki/Photosphere">stellar photosphere</a>, but can be any other background radiation source -- is assumed to produce a broad <a class="various2" href="https://en.wikipedia.org/wiki/Continuous_spectrum">spectral continuum</a>. We also assume that the properties of the line-absorbing (or line-emitting) gas are constant throughout the cloud. If the thickness of the cloud is given by \(\Delta z\), then the dimensionless <a class="various2" href="https://en.wikipedia.org/wiki/Optical_depth">optical depth</a> in the cloud can be written
+
+\begin{equation}
+\tau_\nu = \kappa_\nu \rho \Delta z = \kappa_{\mathrm{\small L}} \phi (\nu) \rho \Delta z ,
+\end{equation}
+
+where \(\nu\) is the <a class="various2" href="https://en.wikipedia.org/wiki/Photon">photon</a> <a class="various2" href="https://en.wikipedia.org/wiki/Electromagnetic_spectrum">frequency</a>, \(\kappa_\nu\) is the <a class="various2" href="https://en.wikipedia.org/wiki/Mass_attenuation_coefficient">absorption coefficient</a> in units of <a class="various2" href="https://en.wikipedia.org/wiki/Cross_section_(physics)">cross section</a> per unit mass (e.g., cm\(^2\) g\(^{-1}\)), and \(\rho\) is the <a class="various2" href="https://en.wikipedia.org/wiki/Density">mass density</a>. For convenience, we write the absorption coefficient as \(\kappa_\mathrm{\small L} \phi (\nu)\), which separates the total line <a class="various2" href="https://en.wikipedia.org/wiki/Opacity_(optics)">opacity</a> \(\kappa_\mathrm{\small L}\) from the line broadening coefficient \(\phi(\nu)\).
+            </p>
+
+            <br>
+
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The <a class="various2" href="https://en.wikipedia.org/wiki/Radiative_transfer">solution</a> for the <a class="various2" href="https://en.wikipedia.org/wiki/Specific_radiative_intensity">specific intensity</a> \(I_\nu\) that emerges from the Schuster cloud is given by
+
+\begin{equation}
+I_\nu = I_{0\nu} e^{-\tau_\nu} + S_\nu ( 1- e^{-\tau_\nu}) ,
+\end{equation}
+
+where \(I_{0\nu}\) is the intensity of the continuum that enters the cloud from below and \(S_\nu\) is the so-called <a class="various2" href="https://en.wikipedia.org/wiki/Source_function">source function</a> of the cloud; it takes account of the local properties of the cloud that would make it "glows" on its own, even in the absence of an external source of radiation. We can continue to make simplifying approximations about these two intensity parameters, and in many cases it is useful to think about them as <a class="various2" href="https://en.wikipedia.org/wiki/Black-body_radiation">blackbody Planck spectra</a>. Thus, let us use the shorthand
+
+\begin{equation}
+I_{0 \nu} \simeq B_{\mathrm{\small C}} ( T_{\mathrm{\small C}} ), \qquad S_\nu \simeq B_{\mathrm{\small L}} ( T_{\mathrm{\small L}}),
+\end{equation}
+
+where the subscript "C" denotes the conditions in the background medium where the continuum is formed, and "L" denotes the conditions in the Schuster cloud where the line is formed. In local <a class="various2" href="https://en.wikipedia.org/wiki/Thermodynamic_equilibrium">thermodynamic equilibrium</a>, \(B\propto T^4\), so we can rewrite equation (2) in terms of the dimensionless <em>residual intensity</em> \(r_\nu\) as
+
+\begin{equation}
+r_\nu = \frac{I_\nu}{I_{0\nu}} = e^{-\tau_\nu} + \bigg(\frac{T_{\mathrm{\small L}}}{T_\mathrm{\small C}}\bigg)^4 (1- e^{-\tau_\nu}).
+\end{equation}
+
+One can see that if the temperature in the cloud is lower than the temperature in the underlying continuum photosphere (i.e., \(T_{\mathrm{\small L}}/T_{\mathrm{\small C}} < 1\)) that \(r_\nu <1\) and we will have an <em>absorption line</em>. Conversely, if the cloud is hotter than the underlying continuum region, we will have an <em>emission line</em> with \(r_\nu >1\).
+            </p>
+
+            <br>
+
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We characterize a line's total amount of absorption or emission by integrating over frequency. Thus, we define the <a class="various2" href="https://en.wikipedia.org/wiki/Equivalent_width">equivalent width</a>
+
+\begin{equation}
+W_\nu = \int \mathrm{d}\nu \; (1- r_\nu).
+\end{equation}
+
+Note that in this case the subscript \(\nu\) does not mean that \(W_\nu\) is a function of \(\nu\), but it is there to convey that this quantity has units of <a class="various2" href="https://en.wikipedia.org/wiki/Frequency">frequency</a>. For the standard case of a cold cloud that produces an absorption line, we see that as the number of atoms (hence the <em><a class="various2" href="https://en.wikipedia.org/wiki/Column_density">column density</a></em>) in the line-forming cloud increases, the line gets deeper, and the (positive definite) equivalent width grows in magnitude. The dependence of \(W_\nu\) on the total line opacity is known as the <em>curve of growth</em>.
+            </p>
+
+            <br><br><br><br>
+            <hr>
+            <br><br>
+
+            <h2 style="color: #FFB676;">Line broadening processes</h2>
+            <br>
+
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The shape of the curve of growth depends crucially on the line broadening function \(\phi(\nu)\). The simplest possible picture of atomic transitions assumes that the two energy levels have precisely known energies \(E_1\) and \(E_2\). Thus, the transition occurs only when photons of a single frequency \(\nu_{\small 12}\) are involved, with
+
+\begin{equation}
+E_2 - E_1 = h \nu_{\small 12}
+\end{equation}
+
+where \(h\) is the <a class="various2" href="https://en.wikipedia.org/wiki/Planck_constant">Planck's constant</a>. In a cloud of gas with a finite temperature, the individual atoms are all moving around with random velocities in 3D space. In <a class="various2" href="https://en.wikipedia.org/wiki/Kinetic_theory">kinetic theory</a> we describe the <a class="various2" href="https://en.wikipedia.org/wiki/Microscopic_scale">microscopic</a> motions of the atoms with a <a class="various2" href="https://en.wikipedia.org/wiki/Distribution_function">distribution function</a> \(f\) written as a function of the particle vector momentum \(\mathbf{p}\). In most "well-behaved" systems this function is a <a class="various2" href="https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution">Maxwell-Boltzmann distribution</a>,
+
+\begin{equation}
+f(\mathbf{p}) = \frac{n}{(2\pi mkT)^{3/2}} \exp \bigg( - \frac{p^2}{2 m kT} \bigg)
+\end{equation}
+
+where \(m\) is the particle mass, \(n=\rho/m\) is the <a class="various2" href="https://en.wikipedia.org/wiki/Number_density">number density</a>, \(k\) is the <a class="various2" href="https://en.wikipedia.org/wiki/Boltzmann_constant">Boltzmann's constant</a>, and \(T\) is the temperature.
+            </p>
+
+            <br>
+
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The line profile function for pure <a class="various2" href="https://en.wikipedia.org/wiki/Doppler_broadening">Doppler broadening</a> is
+
+\begin{equation}
+\langle \phi (\nu_{\mathrm{\small obs}}) \rangle = \frac{1}{\Delta \nu_{\mathrm{\small D}}\sqrt{\pi}} e^{-x^2}
+\end{equation}
+
+where we define the <em>dimensionless line frequency</em> \(x\) and the <em>Doppler width</em> \(\Delta \nu_{\mathrm{\small D}}\) as
+
+\begin{equation}
+x = \frac{\nu_{\mathrm{\small obs}}- \nu_{\mathrm{\small 12}}}{\Delta \nu_{\mathrm{\small D}}}, \qquad \Delta v_{\mathrm{\small D}} = \frac{\nu_{\small 12}}{c} \sqrt{\frac{2kT}{m}}.
+\end{equation}
+            </p>
+
+            <br>
+
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; When combined with natural broadening, the profile becomes a <a class="various2" href="https://en.wikipedia.org/wiki/Voigt_profile">Voigt function</a>:
+
+\begin{equation}
+\langle \phi (\nu_{\mathrm{\small obs}}) \rangle = \frac{\widetilde{H}(a,x)}{\Delta \nu_{\mathrm{\small D}}}
+\end{equation}
+
+and the normalized version of the Voigt function is defined as
+
+\begin{equation}
+\widetilde{H}(a,x) = \frac{a}{\pi^{3/2}}\int^{+\infty}_{-\infty} \frac{\mathrm{d}y \, e^{-y^2}}{(x-y)^2 + a^2}
+\end{equation}
+
+where the dimensionless "<em>damping constant</em>" \(a= \gamma/(4\pi \Delta \nu_{\mathrm{\small D}})\) is a ratio that conveys the relative importance of the two sources of line broadening.
+            </p>
+
+            <br>
+
+            <div align="center">
+                <a class="fancybox-thumb" rel="fancybox-thumb" href="../Images/Student_Version_Fig1.gif" title="<font size='3' color=black><b>Figure 1.</b> Dimensionless Voigt profile function shown for a range of damping constants <em>a</em>.</font>">
+                    <div class="ic_container">
+                        <img height="430" width="600" src="../Images/Student_Version_Fig1.gif"/>
+                        <div class="overlay" style="display:none;"></div>
+                        <div class="ic_caption">
+                            <p class="ic_category"></p>
+                            <h3 class="ic_text">
+                                <small><b>Figure 1.</b> Dimensionless Voigt profile function shown for a range of damping constants <em>a</em>.</small>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <br><br><br><br>
+            <hr>
+            <br><br>
+
+            <h2 style="color: #FFB676;">Evaluating the curve of growth</h2>
+            <br>
+
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The curve of growth shows weak lines exhibiting \(W_\nu \propto \tau_0\) (the <em>linear part</em>), saturated lines showing \(W_\nu \propto \sqrt{\ln \tau_0}\) (the <em>flat part</em>), and strong lines with Voigt wings showing \(W_\nu \propto \sqrt{\tau_0}\).
+            </p>
+
+            <br>
+
+            <div align="center">
+                <a class="fancybox-thumb" rel="fancybox-thumb" href="../Images/Student_Version_Fig3.gif" title="<font size='3' color=black><b>Figure 2.</b> Curve of growth integrated over profiles for various damping constants <em>a</em>.</font>">
+                    <div class="ic_container">
+                        <img height="370" width="800" src="../Images/Student_Version_Fig3.gif"/>
+                        <div class="overlay" style="display:none;"></div>
+                        <div class="ic_caption">
+                            <p class="ic_category"></p>
+                            <h3 class="ic_text">
+                                <small><b>Figure 2.</b> Curve of growth integrated over profiles for various damping constants <em>a</em>.</small>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <br><br><br><br>
+            <hr>
+            <br><br>
+
+            <h2 style="color: #FFB676;">References</h2>
+            <br>
+
+            <div id="listing">
+                <ol>
+                    <li>Armstrong B. H., 1967, J. Quant. Spec. Radiat. Transf., 7, 61</li>
+                    <li>Letchwork K. L. &amp; Benner D. C., 2007, J. Quant. Spec. Radiat. Transf., 107, 173</li>
+                    <li>Mihalas D., 1978, Stellar Atmosphere, 2nd ed., W. H. Freeman, San Francisco</li>
+                    <li>Mihalas D., 1999, ApJ, 525C, 25</li>
+                    <li>Schuster A., 1905, ApJ, 21, 1</li>
+                </ol>
+            </div>
+
+            <br><br><br><br>
+            <hr>
+            <br>
+
+        </div>
+    </div>
+
+    <!-- External Libraries via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js"></script>
+    <script src="../js/Layout.js"></script>
+</body>
+</html>

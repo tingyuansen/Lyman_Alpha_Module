@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interstellar Absorption and the Lyman-Alpha Forest</title>
+    
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="CSS/Layout.css">
+    <link rel="stylesheet" href="CSS/Jquery_UI.css">
+    <link rel="stylesheet" href="CSS/Fancybox.css">
+</head>
+<body>
+    <div id="wrapper">
+        <div class="content">
+
+            <div id="surface2">
+                <div>
+                    <table>
+                        <tr>
+                            <td id="multiple-plot-4" width="250px"></td>
+                            <td id="multiple-plot-5" width="250px"></td>
+                            <td id="multiple-plot-6" width="250px"></td>
+                            <td id="multiple-plot-7" width="250px"></td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr>
+                            <td id="multiple-plot" width="700px"></td>
+                            <td id="multiple-plot" width="0px"></td>
+                            <td>
+                                <div class="animate_off" data-step="10" data-intro="<font face='Nunito-Light' size=3>Here are some check boxes that you can choose to include or exclude certain properties.</font>" data-position='left'>
+                                    <div id="explain-remove" style="display: none; color: black;"><font face="Nunito-Light" size="3">Remove all axes and labels, leaving the Lyman-alpha forest.</font></div>
+                                    <input type="checkbox" onChange="stripping()" id="strip_mode" name="strip_mode" />
+                                    <a title="<font color='black'>Remove plot labels</font>" class="various" href="#explain-remove" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Remove labels</font></a>
+
+                                    <br><br><br>
+
+                                    <div id="explain-alpha" style="display: none; color: black;"><font face="Nunito-Light" size="3">Include the Lyman-alpha absorption, i.e. hydrogen electronic level N=1 to N=2 transition.</font></div>
+                                    <input type="checkbox" onChange="various_mode_check_alpha()" id="alpha_mode" name="alpha_mode" checked=true />
+                                    <a title="<font color='black'>Lyman-alpha</font>" class="various" href="#explain-alpha" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Lyman-alpha</font></a>
+
+                                    <br>
+
+                                    <div id="explain-beta" style="display: none; color: black;"><font face="Nunito-Light" size="3">Include the Lyman-beta absorption, i.e. hydrogen electronic level N=1 to N=3 transition.</font></div>
+                                    <input type="checkbox" onChange="various_mode_check_beta()" id="beta_mode" name="beta_mode" checked=true />
+                                    <a title="<font color='black'>Lyman-beta</font>" class="various" href="#explain-beta" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Lyman-beta</font></a>
+
+                                    <br>
+
+                                    <div id="explain-gamma" style="display: none; color: black;"><font face="Nunito-Light" size="3">Include the Lyman-gamma absorption, i.e. hydrogen electronic level N=1 to N=4 transition.</font></div>
+                                    <input type="checkbox" onChange="various_mode_check_gamma()" id="gamma_mode" name="gamma_mode" checked=true />
+                                    <a title="<font color='black'>Lyman-gamma</font>" class="various" href="#explain-gamma" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Lyman-gamma</font></a>
+
+                                    <br>
+
+                                    <div id="explain-limit" style="display: none; color: black;"><font face="Nunito-Light" size="3">Include the Lyman-limit continuum absorption. Lyman-limit is the frequency above which photons are energetic enough to ionize neutral hydrogen.</font></div>
+                                    <input type="checkbox" onChange="various_mode_check_limit()" id="limit_mode" name="limit_mode" checked=true />
+                                    <a title="<font color='black'>Lyman-limit</font>" class="various" href="#explain-limit" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Lyman-limit</font></a>
+
+                                    <br><br><br>
+
+                                    <div id="explain-continuum" style="display: none; color: black;"><font face="Nunito-Light" size="3">In this mode, the plot shows the relative absorption ratio, i.e. the quasar flux is set to be one at all wavelengths before the absorption.</font></div>
+                                    <label class="label_radio" for="sample-radio">
+                                        <input type="radio" id="forest_mode_line" name="forest_mode" value="line" onChange="forest_mode_change()">
+                                    </label>
+                                    <a title="<font color='black'>Continuum subtracted</font>" class="various" href="#explain-continuum" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Continuum subtracted</font></a>
+
+                                    <br>
+
+                                    <div id="explain-quasar" style="display: none; color: black;"><font face="Nunito-Light" size="3">In this mode, the plot shows the full quasar spectrum overlaid with the Lyman-alpha forest.</font></div>
+                                    <label class="label_radio" for="sample-radio">
+                                        <input type="radio" id="forest_mode_quasar" name="forest_mode" value="quasar" onChange="forest_mode_change()" checked>
+                                    </label>
+                                    <a title="<font color='black'>Quasar mode</font>" class="various" href="#explain-quasar" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Quasar mode</font></a>
+
+                                    <br>
+
+                                    <div id="explain-qspectrum" style="display: none; color: black;"><font face="Nunito-Light" size="3">Include a red dashed line showing the original quasar spectrum without any absorption.</font></div>
+                                    &nbsp;
+                                    <input type="checkbox" id="quasar_check" name="quasar_check" onChange="original_quasar_check()" checked=true />
+                                    <a title="<font color='black'>Quasar spectrum</font>" class="various" href="#explain-qspectrum" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font size="2" face="Open Sans">Quasar Spectrum</font></a>
+                                </div>
+
+                                <br>
+
+                                <div class="animate_off" data-step="11" data-intro="<font face='Nunito-Light' size=3>Click this button to show how the Lyman-alpha forest forms by encountering different intervening gas clouds.</font>" data-position='left'>
+                                    <p class="button2"><a href="javascript:void(0)" onclick="begin_animate()"></a></p>
+                                </div>
+
+                                <div class="animate_on">
+                                    <p class="button3"><a href="javascript:void(0)" onclick="stop_animate()"></a></p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <table data-step="9" data-intro="<font face='Nunito-Light' size=3>You can explore different parameters here using the sliders, and see how they change the Lyman-alpha forest. You can also click the text to know more about each slider.</font>" data-position='top'>
+                        <tr>
+                            <td width="250px">
+                                <div class="animate_off"><div id="clump_norm"></div></div>
+                            </td>
+                            <td width="250px">
+                                <div class="animate_off"><div id="z_power"></div></div>
+                            </td>
+                            <td width="250px">
+                                <div class="animate_off"><div id="HI_power"></div></div>
+                            </td>
+                            <td width="250px">
+                                <div class="animate_off"><div id="zquasar-range"></div></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="250px">
+                                <div id="explain-density2" style="display: none; color: black;"><font face="Nunito-Light" size="3">The total column density from all the intervening gas, i.e. how much stuff there is between the quasar and us.</font></div>
+                                <a title="<font color='black'>Total column density</font>" class="various" href="#explain-density2" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Total column density</font></a><br>
+                                <input type="text" id="clump_norm_val" style="border: 0; font-weight: bold; background-color: #e9eaee;" />
+                            </td>
+
+                            <td width="250px">
+                                <div id="explain-index1" style="display: none; color: black;"><font face="Nunito-Light" size="3">The relative probability of an intervening cloud locating at low/high redshift (further away from us). This probability is parametrized with a power law, P(z)=z<span style="vertical-align:super;font-size:x-small;">&beta;</span>, where z is the redshift. As this index increases, the absorption lines are concentrated toward to the right, indicating that there are more absorptions due to regions that are far away.</font></div>
+                                <a title="<font color='black'>Redshift index</font>" class="various" href="#explain-index1" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Redshift index, &beta;</font></a><br>
+                                <input type="text" id="z_power_val" style="border: 0; font-weight: bold; background-color: #e9eaee;" />
+                            </td>
+
+                            <td width="250px">
+                                <div id="explain-index2" style="display: none; color: black;"><font face="Nunito-Light" size="3">This relative probability of an intervening cloud having low/high density. The probability is parametrized with a power law, P(N)=N<span style="vertical-align:super;font-size:x-small;">-&alpha;</span>, where N is the column density. Given a fixed total column density, more low density clouds (by increasing this index), instead of few high density clouds, will create more absorptions. High density clouds can be saturated and, in turn, waste the column density budget.</font></div>
+                                <a title="<font color='black'>Column density index</font>" class="various" href="#explain-index2" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Column density index, &alpha;</font></a><br>
+                                <input type="text" id="HI_power_val" style="border: 0; font-weight: bold; background-color: #e9eaee;" />
+                            </td>
+
+                            <td width="250px">
+                                <div id="explain-qredshift" style="display: none; color: black;"><font face="Nunito-Light" size="3">Redshift is usually used as a distance indicator in astronomy. This slider indicates distance of the quasar.</font></div>
+                                <a title="<font color='black'>Quasar redshift</font>" class="various" href="#explain-qredshift" org_title=" " onmouseover="this.setAttribute('org_title', this.title); this.title='';" onmouseout="this.title = this.getAttribute('org_title');" onclick="this.title=this.getAttribute('org_title');"><font face="Open Sans">Quasar redshift</font></a><br>
+                                <input type="text" id="zquasar_val" style="border: 0; font-weight: bold; background-color: #e9eaee;" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <ul id="menu">
+                <li><a href="index.html"><font style="font-family:AquilineTwo;">Stellar Line Formation</font></a></li>
+                <li><a class="current" href="lyman-alpha-forest.html"><font style="font-family:AquilineTwo;" data-step="8" data-intro="<font face='Nunito-Light' size=3>This second interactive module illustrates the formation of Lyman-alpha forest.</font>" data-position='left'>Lyman-Alpha Forest</font></a></li>
+                <li><a href="https://www.youtube.com/watch?v=firoIKIB7K8" target="_blank"><font style="font-family:AquilineTwo;">Video Tutorial</font></a></li>
+            </ul>
+
+            <br><br><br>
+
+            <table>
+                <tr>
+                    <td width="150px">
+                        <font size="6" style="font-family:AquilineTwo;">Text:</font>
+                    </td>
+                    <td width="200px">
+                        <div id="fisheye1" class="fisheye">
+                            <div class="fisheyeContainter">
+                                <a class="fisheyeItem" href="pages/stellar-line-formation-public.html"><img src="Images/Public_Version.png"><span></span></a>
+                                <a class="fisheyeItem" href="pages/stellar-line-formation-student.html"><img src="Images/Student_Version.png"><span></span></a>
+                            </div>
+                        </div>
+                        <br><br>
+                    </td>
+                    <td width="100px"></td>
+                    <td width="200px" data-step="12" data-intro="<font face='Nunito-Light' size=3>If you want to learn more on this topic, click the icons here. We have texts both for audiences without extensive astronomy background, as well as texts for advanced undergraduate/graduate students in astronomy.</font>" data-position='right'>
+                        <div id="fisheye2" class="fisheye">
+                            <div class="fisheyeContainter">
+                                <a class="fisheyeItem" href="pages/lyman-alpha-forest-public.html"><img src="Images/Public_Version.png"><span></span></a>
+                                <a class="fisheyeItem" href="pages/lyman-alpha-forest-student.html"><img src="Images/Student_Version.png"><span></span></a>
+                            </div>
+                        </div>
+                        <br><br>
+                    </td>
+                </tr>
+            </table>
+
+            <br><br><br><br>
+
+            <div id="copyright_and_share">
+                <p style="font-size:12px; color:#888;">
+                    Made by: <a href="https://www.asc.ohio-state.edu/ting.74/" target="_blank">Yuan-Sen Ting</a> (Harvard Astronomy)<br>
+                    Advised by: Andrew Pontzen, Alyssa Goodman, Steven Cranmer, Bruce Peterson, Chris Faesi, Nathan Sanders<br>
+                    Image credits: Benjamin SiewMeng Chee
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- External Libraries via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    
+    <!-- Application JS -->
+    <script src="js/Fisheye.js"></script>
+    <script src="js/Checkbox_Radio.js"></script>
+    <script src="js/DataLoader.js"></script>
+    <script src="js/Ting.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            update2();
+            replot_axis(2);
+            replot_axis(4);
+            $('.animate_on').hide();
+            initialization = 0;
+        });
+
+    </script>
+</body>
+</html>
