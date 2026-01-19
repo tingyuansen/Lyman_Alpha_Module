@@ -43,7 +43,7 @@ img{outline:0;border:0}
 .button3,.button3 a{background:url(../Images/Animate_Stop.png) 0 -50px;height:50px;width:100px;display:block}
 .button1 a,.button2 a,.button3 a{background-position:0 0}
 
-.ic_container{vertical-align:baseline;position:relative;margin:10px}
+.ic_container{vertical-align:baseline;position:relative;margin:10px;margin-bottom:60px}
 .overlay{opacity:0.3;position:absolute;top:0;bottom:0;left:0;right:0;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50)}
 .ic_caption{position:absolute;opacity:0.6;overflow:hidden;left:0;right:0;cursor:default;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);margin:0;padding:0}
 .ic_category{text-transform:uppercase;font-size:12px;font-weight:700;color:#f0f0f0;letter-spacing:3px;margin:0;padding:5px}
